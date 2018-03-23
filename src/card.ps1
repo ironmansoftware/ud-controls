@@ -1,4 +1,4 @@
-function New-UDCard {
+function New-UDCCard {
     param(
         [Parameter()]
         [String]$Id = (New-Guid),
@@ -13,11 +13,14 @@ function New-UDCard {
         [Parameter()]
         [PowerShellProTools.UniversalDashboard.Models.Link[]]$Links,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.Element]$Image,
+        [PowerShellProTools.UniversalDashboard.Models.Basics.Element]$Image,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.Element]$Reveal,
+        [ScriptBlock]$Reveal,
         [Parameter()]
         [String]$RevealTitle,
+        [Parameter()]
+        [ValidateSet('small', 'medium', 'large')]
+        [String]$Size
     )
 
     $activatorClass = ''
@@ -25,9 +28,14 @@ function New-UDCard {
         $activatorClass = 'activator'
     }
 
-    New-UDElement -Tag "div" -Attributes @{ className = "card" } -Content {
+    $sizeClass = ''
+    if ($PSBoundParameters.ContainsKey('Size')) {
+        $sizeClass = $Size
+    }
+
+    New-UDElement -Tag "div" -Attributes @{ className = "card $sizeClass" } -Content {
         if ($Image -ne $null) {
-            New-UDElement -Tag 'div' -Attributes @{ className = "card-image waves-effect waves-block waves-light $activatorClass" } -Content {
+            New-UDElement -Tag 'div' -Attributes @{ className = "card-image waves-effect waves-block waves-light" } -Content {
                 $Image
             }
         }
@@ -43,10 +51,11 @@ function New-UDCard {
 
             $Content.Invoke()
 
-            if ($Links -ne $null) {
-                New-UDElement -Tag 'div' -Attributes @{ className = 'card-action' } -Content {
-                    $Links
-                }
+        }
+
+        if ($Links -ne $null) {
+            New-UDElement -Tag 'div' -Attributes @{ className = 'card-action' } -Content {
+                $Links
             }
         }
 
@@ -56,7 +65,7 @@ function New-UDCard {
                     $Title 
                     New-UDElement -Tag 'i' -Attributes @{ className = 'fa fa-times right'}
                 }
-                $Reveal 
+                $Reveal.Invoke()
             }
         }
     }

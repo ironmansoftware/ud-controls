@@ -9,17 +9,18 @@ function New-UDCheckbox {
         [Parameter()]
         [Switch]$FilledIn,
         [Parameter()]
-        [Switch]$Disabled
+        [Switch]$Disabled,
+        [Parameter()]
+        [ScriptBlock]$OnChange
     )
-
-    $txtChecked = ''
-    if ($Checked) {
-        $txtChecked = "checked"
-    }
 
     $Attributes = @{
         type = "checkbox"
-        checked = $txtChecked
+        onChange = $OnChange
+    }
+
+    if ($Checked) {
+        $Attributes.checked = 'checked'
     }
 
     if ($FilledIn) {
@@ -30,10 +31,10 @@ function New-UDCheckbox {
         $Attributes.disabled = $true
     }
 
-    New-UDElement -Tag "P" -Content {
+    New-UDElement -Tag "p" -Content {
         New-UDElement -Id $Id -Tag "input" -Attributes $Attributes
         New-UDElement -Tag "label" -Attributes @{
             "for" = $id
-        }
+        } -Content { $label }
     }
 }

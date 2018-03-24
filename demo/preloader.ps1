@@ -1,7 +1,7 @@
 
-New-UDPage -Name "Preloader" -Content {
+New-UDPage -Name "Preloader" -Icon spinner -Content {
     New-UDCRow -Columns {
-        New-UDCColumn -Content {
+        New-UDCColumn -Size 12 -Content {
             New-UDHeading -Size 1 -Content "Preloaders" -Color '#ee6e73'
 
             New-UDParagraph -Content {
@@ -15,10 +15,16 @@ New-UDPage -Name "Preloader" -Content {
             }
 
             New-UDHeading -Size 5 -Content "Determinate"
-            New-UDPreloader -PercentComplete 70 
+
+            New-UDExample -Example {
+                New-UDPreloader -PercentComplete 70 
+            }
 
             New-UDHeading -Size 5 -Content "Indeterminate"
-            New-UDPreloader 
+
+            New-UDExample -Example {
+                New-UDPreloader 
+            }
 
             New-UDHeading -Size 3 -Content "Circular" -Color '#ee6e73'
 
@@ -26,15 +32,17 @@ New-UDPage -Name "Preloader" -Content {
                 "There are 4 colors and 3 sizes of circular spinners."
             }
 
-            New-UDCRow -Columns {
-                New-UDCColumn -Size 4 -Content {
-                    New-UDPreloader -Circular -Color blue -Size large
-                }
-                New-UDCColumn -Size 4 -Content {
-                    New-UDPreloader -Circular -Color red -Size medium
-                }
-                New-UDCColumn -Size 4 -Content {
-                    New-UDPreloader -Circular -Color green -Size small
+            New-UDExample -Example {
+                New-UDCRow -Columns {
+                    New-UDCColumn -Size 4 -Content {
+                        New-UDPreloader -Circular -Color blue -Size large
+                    }
+                    New-UDCColumn -Size 4 -Content {
+                        New-UDPreloader -Circular -Color red -Size medium
+                    }
+                    New-UDCColumn -Size 4 -Content {
+                        New-UDPreloader -Circular -Color green -Size small
+                    }
                 }
             }
         }

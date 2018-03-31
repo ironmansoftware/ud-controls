@@ -1,4 +1,6 @@
+Import-Module  "C:\src\PowerShellProTools.UniversalDashboard\UniversalDashboard\bin\Debug\net462\UniversalDashboard.psm1"
 Import-Module (Join-Path $PSScriptRoot "..\src\UniversalDashboard.Controls.psm1") -Force
+
 
 Get-UDDashboard | Stop-UDDashboard
 
@@ -9,8 +11,8 @@ function New-UDExample {
 
     $Example.Invoke()
 
-    New-UDCRow -Columns {
-        New-UDCColumn -MediumSize 6 -SmallSize 12 -Content {
+    New-UDRow -Columns {
+        New-UDColumn -MediumSize 6 -SmallSize 12 -Content {
             New-UDElement -Tag "pre" -Content {
                 $Example.ToString()
             } -Attributes @{
@@ -30,6 +32,7 @@ function New-UDExample {
 $Button = . "$PSScriptRoot\button.ps1"
 $Card = . "$PSScriptRoot\card.ps1"
 $Checkbox = . "$PSScriptRoot\checkbox.ps1"
+$Collapsible = . "$PSScriptRoot\collapsible.ps1"
 $Collection = . "$PSScriptRoot\collection.ps1"
 $Modal = . "$PSScriptRoot\modal.ps1"
 $Icon = . "$PSScriptRoot\icon.ps1"
@@ -40,6 +43,7 @@ $Dashboard = New-UDDashboard -Title "Controls" -Pages @(
     $Button
     $Card
     $Checkbox
+    $Collapsible
     $Collection
     $Modal
     $Icon
@@ -47,4 +51,4 @@ $Dashboard = New-UDDashboard -Title "Controls" -Pages @(
     $SwitchPage
 )
 
-Start-UDDashboard -Dashboard $Dashboard -Port 10000
+Start-UDDashboard -Dashboard $Dashboard -Port 10001

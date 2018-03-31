@@ -1,7 +1,7 @@
 
 New-UDPage -Name "Preloader" -Icon spinner -Content {
-    New-UDCRow -Columns {
-        New-UDCColumn -Size 12 -Content {
+    New-UDRow -Columns {
+        New-UDColumn -Size 12 -Content {
             New-UDHeading -Size 1 -Content "Preloaders" -Color '#ee6e73'
 
             New-UDParagraph -Content {
@@ -33,14 +33,14 @@ New-UDPage -Name "Preloader" -Icon spinner -Content {
             }
 
             New-UDExample -Example {
-                New-UDCRow -Columns {
-                    New-UDCColumn -Size 4 -Content {
+                New-UDRow -Columns {
+                    New-UDColumn -Size 4 -Content {
                         New-UDPreloader -Circular -Color blue -Size large
                     }
-                    New-UDCColumn -Size 4 -Content {
+                    New-UDColumn -Size 4 -Content {
                         New-UDPreloader -Circular -Color red -Size medium
                     }
-                    New-UDCColumn -Size 4 -Content {
+                    New-UDColumn -Size 4 -Content {
                         New-UDPreloader -Circular -Color green -Size small
                     }
                 }

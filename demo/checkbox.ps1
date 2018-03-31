@@ -1,7 +1,7 @@
 
 New-UDPage -Name "Checkbox" -Icon check_square -Content {
-    New-UDCRow -Columns {
-        New-UDCColumn -Size 12 -Content {
+    New-UDRow -Columns {
+        New-UDColumn -Size 12 -Content {
             New-UDHeading -Size 1 -Content "Checkboxes" -Color '#ee6e73'
 
             New-UDParagraph -Content {

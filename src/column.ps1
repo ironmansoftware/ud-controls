@@ -1,4 +1,4 @@
-function New-UDCColumn {
+function New-UDColumn {
     param(
         [Parameter()]
         [String]$Id = (New-Guid),

@@ -1,4 +1,4 @@
-function New-UDCRow {
+function New-UDRow {
     [CmdletBinding(DefaultParameterSetName = 'static')]
     param(
         [Parameter()]

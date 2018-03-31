@@ -24,8 +24,15 @@ function New-UDColumn {
         [ValidateRange(1,12)]
         [int]$LargeOffset = 1,
 
-        [Parameter()]
-        [ScriptBlock]$Content
+        [Parameter(ParameterSetName = 'content')]
+        [ScriptBlock]$Content,
+
+        [Parameter(ParameterSetName = "endpoint")]
+        [ScriptBlock]$Endpoint,
+        [Parameter(ParameterSetName = "endpoint")]
+        [Switch]$AutoRefresh,
+        [Parameter(ParameterSetName = "endpoint")]
+		[int]$RefreshInterval = 5
     )
 
     $classes = "col"
@@ -54,7 +61,15 @@ function New-UDColumn {
         $classes += " offset-l$MediumSize"
     }
 
-    New-UDElement -Tag 'div' -Attributes @{
-        className = $classes
-    } -Content $Content
+    if ($PSCmdlet.ParameterSetName -eq 'content') {
+        New-UDElement -Tag 'div' -Attributes @{
+            className = $classes
+        } -Content $Content
+    } else {
+        New-UDElement -Tag 'div' -Attributes @{
+            className = $classes
+        } -Endpoint $Endpoint -AutoRefresh:$AutoRefresh -RefreshInterval $RefreshInterval
+    }
+
+    
 }

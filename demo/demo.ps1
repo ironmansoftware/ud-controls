@@ -1,4 +1,4 @@
-Import-Module  "C:\src\PowerShellProTools.UniversalDashboard\UniversalDashboard\bin\Debug\net462\UniversalDashboard.psm1"
+Import-Module UniversalDashboard
 Import-Module (Join-Path $PSScriptRoot "..\src\UniversalDashboard.Controls.psm1") -Force
 
 

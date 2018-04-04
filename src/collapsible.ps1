@@ -5,7 +5,7 @@ function New-UDCollapsible {
         [Parameter(Mandatory = $true, Position = 0)]
         [ScriptBlock]$Items,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroudColor = 'White',
+        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroundColor = 'White',
         [Parameter()]
         [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$FontColor = 'Black',
         [Parameter()]
@@ -24,8 +24,8 @@ function New-UDCollapsible {
         className = $className 
         'data-collapsible' = $Type.ToLower()
         style = @{
-            backgroudColor = $BackgroundColor.HtmlColor
-            fontColor = $FontColor.HtmlColor
+            backgroundColor = $BackgroundColor.HtmlColor
+            color = $FontColor.HtmlColor
         }
     } -Content $Items
 }
@@ -50,7 +50,7 @@ function New-UDCollapsibleItem {
 		[Parameter()]
         [Switch]$Active,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroudColor = 'White',
+        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroundColor = 'White',
         [Parameter()]
         [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$FontColor = 'Black'
     )
@@ -63,16 +63,18 @@ function New-UDCollapsibleItem {
         $itemClassName += " active"
     }
 
-
-    
     New-UDElement -Tag "li" -id $Id -Attributes @{
+        style = @{
+            backgroundColor = $BackgroundColor.HtmlColor
+            color = $FontColor.HtmlColor
+        }
         className = $liClassName
     } -Content {
         New-UDElement -Tag "div" -Attributes @{
             className = $itemClassName 
             style = @{
-                backgroudColor = $BackgroundColor.HtmlColor
-                fontColor = $FontColor.HtmlColor
+                backgroundColor = $BackgroundColor.HtmlColor
+                color = $FontColor.HtmlColor
             }
         } -Id "$Id-header" -Content {
             if ($PSBoundParameters.ContainsKey("Icon")) {
@@ -83,12 +85,12 @@ function New-UDCollapsibleItem {
         if ($PSCmdlet.ParameterSetName -eq "content") {
             New-UDElement -Tag "div" -Attributes @{
                 className = "collapsible-body"
-            } -Content $Content
+            } -Content $Content -Id "$Id-body"
         }
         else {
             New-UDElement -Tag "div" -Attributes @{
                 className = "collapsible-body"
-            } -Endpoint $Endpoint -AutoRefresh:$AutoRefresh -RefreshInterval $RefreshInterval
+            } -Endpoint $Endpoint -AutoRefresh:$AutoRefresh -RefreshInterval $RefreshInterval -Id "$Id-body"
         }
     }
     

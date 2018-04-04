@@ -1,7 +1,6 @@
 Import-Module UniversalDashboard
 Import-Module (Join-Path $PSScriptRoot "..\src\UniversalDashboard.Controls.psm1") -Force
 
-
 Get-UDDashboard | Stop-UDDashboard
 
 function New-UDExample {
@@ -24,9 +23,6 @@ function New-UDExample {
             }
         }
     }
-
-
-
 }
 
 $Button = . "$PSScriptRoot\button.ps1"
@@ -37,7 +33,9 @@ $Collection = . "$PSScriptRoot\collection.ps1"
 $Modal = . "$PSScriptRoot\modal.ps1"
 $Icon = . "$PSScriptRoot\icon.ps1"
 $Preloader = . "$PSScriptRoot\preloader.ps1"
+$Radio = . "$PSScriptRoot\radio.ps1"
 $SwitchPage = . "$PSScriptRoot\switch.ps1"
+$Textbox = . "$PSScriptRoot\textbox.ps1"
 
 $Dashboard = New-UDDashboard -Title "Controls" -Pages @(
     $Button
@@ -48,7 +46,9 @@ $Dashboard = New-UDDashboard -Title "Controls" -Pages @(
     $Modal
     $Icon
     $Preloader
+    $Radio
     $SwitchPage
+    $Textbox
 )
 
 Start-UDDashboard -Dashboard $Dashboard -Port 10001

@@ -1,6 +1,8 @@
 function New-UDSelect {
     param(
         [Parameter()]
+        [String]$Id = (New-Guid),
+        [Parameter()]
         [ScriptBlock]$Option,
         [Parameter()]
         [Switch]$MultiSelect,
@@ -59,7 +61,7 @@ function New-UDSelectOption {
         [Switch]$Disabled,
         [Parameter()]
         [Switch]$Selected,
-        [Parameters()]
+        [Parameter()]
         [String]$Icon
     )
 

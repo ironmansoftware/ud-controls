@@ -3,7 +3,7 @@ function New-UDRow {
     param(
         [Parameter()]
         [String]$Id = (New-Guid),
-        [Parameter(ParameterSetName = "static")]
+        [Parameter(ParameterSetName = "static", Position = 0)]
         [ScriptBlock]$Columns,
         [Parameter(ParameterSetName = "dynamic")]
         [ScriptBlock]$Endpoint,

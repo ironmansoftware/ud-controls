@@ -1,15 +1,18 @@
-function New-UDCCard {
+function New-UDCard {
     param(
         [Parameter()]
         [String]$Id = (New-Guid),
         [Parameter()]
         [String]$Title,
-        [Parameter()]
+        [Parameter(ParameterSetName = 'content')]
         [ScriptBlock]$Content,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroundColor,
+        [Parameter(ParameterSetName = 'text')]
+        [string]$Text,
         [Parameter()]
-        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$FontColor,
+        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$BackgroundColor = 'white',
+        [Parameter()]
+        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$FontColor = 'black',
         [Parameter()]
         [PowerShellProTools.UniversalDashboard.Models.Link[]]$Links,
         [Parameter()]
@@ -20,7 +23,9 @@ function New-UDCCard {
         [String]$RevealTitle,
         [Parameter()]
         [ValidateSet('small', 'medium', 'large')]
-        [String]$Size
+        [String]$Size,
+        [Parameter()]
+        [String]$Language
     )
 
     $activatorClass = ''
@@ -33,7 +38,12 @@ function New-UDCCard {
         $sizeClass = $Size
     }
 
-    New-UDElement -Tag "div" -Attributes @{ className = "card $sizeClass" } -Content {
+    $style = @{
+        backgroundColor = $BackgroundColor.HtmlColor
+        color = $FontColor.HtmlColor
+    }
+
+    New-UDElement -Tag "div" -Attributes @{ className = "card $sizeClass"; style = $style  } -Content {
         if ($Image -ne $null) {
             New-UDElement -Tag 'div' -Attributes @{ className = "card-image waves-effect waves-block waves-light" } -Content {
                 $Image
@@ -49,8 +59,11 @@ function New-UDCCard {
                 }
             }
 
-            $Content.Invoke()
-
+            if ($PSCmdlet.ParameterSetName -eq 'content') {
+                $Content.Invoke()
+            } else {
+                $Text
+            }
         }
 
         if ($Links -ne $null) {

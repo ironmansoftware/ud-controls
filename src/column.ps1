@@ -24,7 +24,7 @@ function New-UDColumn {
         [ValidateRange(1,12)]
         [int]$LargeOffset = 1,
 
-        [Parameter(ParameterSetName = 'content')]
+        [Parameter(ParameterSetName = 'content', Position = 1)]
         [ScriptBlock]$Content,
 
         [Parameter(ParameterSetName = "endpoint")]

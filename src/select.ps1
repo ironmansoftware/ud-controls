@@ -11,11 +11,15 @@ function New-UDSelect {
         [Parameter()]
         [Switch]$BrowserDefault,
         [Parameter()]
-        [Switch]$Icons
+        [Switch]$Icons,
+        [Parameter()]
+        [ScriptBlock]$OnChange
     )
 
     Process {
-        $Attributes = @{}
+        $Attributes = @{
+            onChange = $OnChange
+        }
         if ($MultiSelect) {
             $Attributes.multiple = $true
         }
@@ -29,7 +33,7 @@ function New-UDSelect {
         }
 
         New-UDElement -Tag "div" -Attributes @{className = 'input-field'} -Content {
-            New-UDElement -Tag "select" -Content $Option -Attributes $Attributes
+            New-UDElement -Tag "select" -Id $Id -Content $Option -Attributes $Attributes
 
             if ($PSBoundParameters.ContainsKey('Label')) {
                 New-UDElement -Tag "label" -Content { $Label }

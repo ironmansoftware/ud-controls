@@ -1,4 +1,5 @@
 function New-UDColumn {
+    [CmdletBinding(DefaultParameterSetName = 'content')]
     param(
         [Parameter()]
         [String]$Id = (New-Guid),

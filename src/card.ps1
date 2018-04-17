@@ -1,4 +1,5 @@
 function New-UDCard {
+    [CmdletBinding(DefaultParameterSetName = 'text')]
     param(
         [Parameter()]
         [String]$Id = (New-Guid),

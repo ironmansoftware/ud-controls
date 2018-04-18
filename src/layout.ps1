@@ -7,14 +7,21 @@ function New-UDLayout {
     )
 
     $Components = $Content.Invoke()
-
-    $columnSize = $Columns / 12
-
+    $columnSize = 12 / $Columns
     $Offset = 0
+    $ComponentCount = ($Components | Measure-Object).Count
 
-    New-UDRow -Columns {
-        New-UDColumn -Size $columnSize -Content {
-
+    while ($Offset -lt $ComponentCount) {
+        $ColumnObjects = $Components | Select-Object -Skip $Offset -First $Columns | ForEach-Object {
+            New-UDColumn -Size $ColumnSize -Content {
+                $_
+            }
         }
+
+        New-UDRow -Columns {
+            $ColumnObjects
+        }
+        
+        $Offset += $Columns
     }
 }

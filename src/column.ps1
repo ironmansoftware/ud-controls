@@ -49,19 +49,19 @@ function New-UDColumn {
     }
 
     if ($PSBoundParameters.ContainsKey("LargeSize")) {
-        $classes += " l$MediumSize"
+        $classes += " l$LargeSize"
     }
 
     if ($PSBoundParameters.ContainsKey("SmallOffset")) {
-        $classes += " offset-s$SmallSize"
+        $classes += " offset-s$SmallOffset"
     }
 
     if ($PSBoundParameters.ContainsKey("MediumOffset")) {
-        $classes += " offset-m$MediumSize"
+        $classes += " offset-m$MediumOffset"
     }
 
     if ($PSBoundParameters.ContainsKey("LargeOffset")) {
-        $classes += " offset-l$MediumSize"
+        $classes += " offset-l$LargeOffset"
     }
 
     if ($PSCmdlet.ParameterSetName -eq 'content') {

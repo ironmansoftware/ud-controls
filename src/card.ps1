@@ -26,7 +26,13 @@ function New-UDCard {
         [ValidateSet('small', 'medium', 'large')]
         [String]$Size,
         [Parameter()]
-        [String]$Language
+        [String]$Language,
+        [Parameter()]
+        [ValidateSet('left', 'center', 'right')]
+        [String]$TextAlignment = 'left',
+        [ValidateSet('Small', 'Medium', 'Large')]
+        [String]$TextSize = 'Small'
+        
     )
 
     $activatorClass = ''
@@ -60,10 +66,20 @@ function New-UDCard {
                 }
             }
 
-            if ($PSCmdlet.ParameterSetName -eq 'content') {
-                $Content.Invoke()
-            } else {
-                $Text
+            New-UDElement -Tag "div" -Attributes @{ className = "$TextAlignment-align" } -Content {
+                $TextContent = {
+                    if ($PSCmdlet.ParameterSetName -eq 'content') {
+                        $Content.Invoke()
+                    } else {
+                        $Text
+                    }
+                }
+
+                switch($TextSize) {
+                    "Small" { $TextContent.Invoke() }
+                    "Medium" { New-UDHeading -Size 5 -Content $TextContent }
+                    "Largin" { New-UDHeading -Size 3 -Content $TextContent }
+                }
             }
         }
 

@@ -2,15 +2,15 @@
 New-UDPage -Name "Icon" -Icon smile_o -Content {
     New-UDRow -Columns {
         New-UDColumn -Size 12 -Content {
-            New-UDHeading -Size 1 -Content "Icons" -Color '#ee6e73'
+            New-UDHeading -Size 1 -Text "Icons" 
 
             New-UDParagraph -Content {
                 "Universal Dashboard uses FontAwesome icons. "
             }
 
-            New-UDHeading -Size 3 -Content "Full Set of Icons" -Color '#ee6e73'
+            New-UDHeading -Size 3 -Text "Full Set of Icons" 
 
-            New-UDExample -Example {
+            New-UDElementExample -Example {
                 New-UDRow -Columns {
                     New-UDColumn -Size 1 -Content {
                         New-UDIcon -Icon user -size 4x
@@ -27,9 +27,9 @@ New-UDPage -Name "Icon" -Icon smile_o -Content {
                 }
             }
 
-            New-UDHeading -Size 3 -Content "Sizes" -Color '#ee6e73'
+            New-UDHeading -Size 3 -Text "Sizes" 
 
-            New-UDExample -Example {
+            New-UDElementExample -Example {
                 New-UDRow -Columns {
                     New-UDColumn -Size 1 -Content {
                         New-UDIcon -Icon bug -Size ExtraSmall
@@ -46,9 +46,9 @@ New-UDPage -Name "Icon" -Icon smile_o -Content {
                 }
             }
             
-            New-UDHeading -Size 3 -Content "Colors" -Color '#ee6e73'
+            New-UDHeading -Size 3 -Text "Colors" 
 
-            New-UDExample -Example {
+            New-UDElementExample -Example {
                 New-UDRow -Columns {
                     New-UDColumn -Size 1 -Content {
                         New-UDIcon -Icon user -size 4x -Color green

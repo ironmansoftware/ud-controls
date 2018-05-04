@@ -2,17 +2,20 @@
 New-UDPage -Name "Select" -Icon circle -Content {
     New-UDRow -Columns {
         New-UDColumn -Size 12 -Content {
-            New-UDHeading -Size 1 -Content "Select" -Color '#ee6e73'
+            New-UDHeading -Size 1 -Text "Select" 
 
             New-UDParagraph -Content {
-                "Radio Buttons are used when the user must make only one selection out of a group of items. "
+                "Select drop downs allow you to offer options a user can select."
             }
+
+            New-UDHeading -Size 3 -Text "Basic"
             
-            New-UDExample -Example {
-                New-UDRadio -Label Red -Checked
-                New-UDRadio -Label Yellow 
-                New-UDRadio -Label Green -WithGap
-                New-UDRadio -Label Brown -Disabled
+            New-UDElementExample -Label "Fruit" -Example {
+                New-UDSelect -Option {
+                    New-UDSelectOption -Name "Apple" -Value 1
+                    New-UDSelectOption -Name "Orange" -Value 2
+                    New-UDSelectOption -Name "Grapes" -Value 3
+                }
             }
         }
     }

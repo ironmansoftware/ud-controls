@@ -2,13 +2,13 @@
 New-UDPage -Name "Collapsible" -Icon check_square -Content {
     New-UDRow -Columns {
         New-UDColumn -Size 12 -Content {
-            New-UDHeading -Size 1 -Content "Collapsible" -Color '#ee6e73'
+            New-UDHeading -Size 1 -Text "Collapsible" 
 
             New-UDParagraph -Content {
                 "Use checkboxes when looking for yes or no answers. "
             }
             
-            New-UDExample -Example {
+            New-UDElementExample -Example {
                 New-UDCollapsible -Items {
                     New-UDCollapsibleItem -Title "Hey" -Content {
                         "Hey!"

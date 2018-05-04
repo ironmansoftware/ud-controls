@@ -3,15 +3,25 @@ function New-UDParagraph {
         [Parameter(ParameterSetName = 'content')]
         [ScriptBlock]$Content,
         [Parameter(ParameterSetName = 'text')]
-        [string]$Text
+        [string]$Text,
+        [Parameter()]
+        [PowerShellProTools.UniversalDashboard.Models.DashboardColor]$Color = 'black'
     )
 
     if ($PSCmdlet.ParameterSetName -eq 'content') {
-        New-UDElement -Tag 'p' -Content $Content
+        New-UDElement -Tag 'p' -Content $Content -Attributes @{
+            style = @{
+                color = $Color.HtmlColor
+            }
+        }
     }
     else {
         New-UDElement -Tag 'p' -Content {
             $Text
+        } -Attributes @{
+            style = @{
+                color = $Color.HtmlColor
+            }
         }
     }
    

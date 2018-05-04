@@ -11,7 +11,9 @@ function New-UDRadio {
         [Parameter()]
         [ScriptBlock]$OnChange,
         [Parameter()]
-        [string]$Group
+        [string]$Group,
+        [Parameter()]
+        [Switch]$Checked
     )
 
     $Attributes = @{

@@ -3,7 +3,7 @@ Import-Module (Join-Path $PSScriptRoot "..\src\UniversalDashboard.Controls.psm1"
 
 Get-UDDashboard | Stop-UDDashboard
 
-function New-UDExample {
+function New-UDElementExample {
     param(
         [ScriptBlock]$Example
     )

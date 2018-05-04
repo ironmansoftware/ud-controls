@@ -28,7 +28,7 @@ function New-UDCollection {
                 New-UDElement -Tag 'li' -Attributes @{
                     className = 'collection-header'
                 } -Content {
-                    New-UDHeading -Size 4 -Content $Header
+                    New-UDHeading -Size 4 -Text $Header
                 }
             }
 

@@ -78,7 +78,7 @@ function New-UDCard {
                 switch($TextSize) {
                     "Small" { $TextContent.Invoke() }
                     "Medium" { New-UDHeading -Size 5 -Content $TextContent }
-                    "Largin" { New-UDHeading -Size 3 -Content $TextContent }
+                    "Largin" { New-UDHeading -Size 3 -Text $TextContent }
                 }
             }
         }

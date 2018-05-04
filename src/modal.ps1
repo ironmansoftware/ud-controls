@@ -21,7 +21,7 @@ function New-UDModal {
             className = "modal-content"
         } -Content {
             if ($PSBoundParameters.ContainsKey("Header")) {
-                New-UDHeading -Size 4 -Content $Header 
+                New-UDHeading -Size 4 -Text $Header 
             }
             $Content.Invoke()
         }

@@ -1,5 +1,7 @@
 function New-UDIcon {
     param(
+        [Parameter()]
+        [String]$Id = (New-Guid),
         [Parameter(Mandatory = $true)]
         [PowerShellProTools.UniversalDashboard.Models.FontAwesomeIcons]$Icon,
         [Parameter()]
@@ -42,5 +44,5 @@ function New-UDIcon {
         }
     }
 
-    New-UDElement -Tag 'i' -Attributes $Attributes
+    New-UDElement -Tag 'i' -Attributes $Attributes -Id $Id
 }

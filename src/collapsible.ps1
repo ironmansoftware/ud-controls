@@ -78,7 +78,7 @@ function New-UDCollapsibleItem {
             }
         } -Id "$Id-header" -Content {
             if ($PSBoundParameters.ContainsKey("Icon")) {
-                New-UDIcon -Icon $Icon
+                New-UDIcon -Icon $Icon -Id "$Id-icon"
             }
             $Title
         }
